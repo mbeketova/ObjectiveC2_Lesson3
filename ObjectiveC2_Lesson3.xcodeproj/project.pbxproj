@@ -14,6 +14,10 @@
 		84A1D7C51B0340CE00B21F9D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84A1D7C41B0340CE00B21F9D /* Images.xcassets */; };
 		84A1D7C81B0340CE00B21F9D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A1D7C61B0340CE00B21F9D /* LaunchScreen.xib */; };
 		84A1D7D41B0340CE00B21F9D /* ObjectiveC2_Lesson3Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A1D7D31B0340CE00B21F9D /* ObjectiveC2_Lesson3Tests.m */; };
+		84A1D7DE1B03421C00B21F9D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A1D7DD1B03421C00B21F9D /* MapKit.framework */; };
+		84A1D7E01B03423900B21F9D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A1D7DF1B03423900B21F9D /* CoreLocation.framework */; };
+		84A1D7E61B03A88300B21F9D /* marker_apartments.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A1D7E51B03A88300B21F9D /* marker_apartments.png */; };
+		84A1D7E91B03E73200B21F9D /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A1D7E81B03E73200B21F9D /* CustomTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +44,11 @@
 		84A1D7CD1B0340CE00B21F9D /* ObjectiveC2_Lesson3Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ObjectiveC2_Lesson3Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84A1D7D21B0340CE00B21F9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84A1D7D31B0340CE00B21F9D /* ObjectiveC2_Lesson3Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjectiveC2_Lesson3Tests.m; sourceTree = "<group>"; };
+		84A1D7DD1B03421C00B21F9D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		84A1D7DF1B03423900B21F9D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		84A1D7E51B03A88300B21F9D /* marker_apartments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = marker_apartments.png; path = ../marker_apartments.png; sourceTree = "<group>"; };
+		84A1D7E71B03E73100B21F9D /* CustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
+		84A1D7E81B03E73200B21F9D /* CustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +56,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84A1D7E01B03423900B21F9D /* CoreLocation.framework in Frameworks */,
+				84A1D7DE1B03421C00B21F9D /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,9 +71,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		842424051B053DFF00926D3D /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				84A1D7DF1B03423900B21F9D /* CoreLocation.framework */,
+				84A1D7DD1B03421C00B21F9D /* MapKit.framework */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
 		84A1D7AB1B0340CD00B21F9D = {
 			isa = PBXGroup;
 			children = (
+				842424051B053DFF00926D3D /* Framework */,
 				84A1D7B61B0340CE00B21F9D /* ObjectiveC2_Lesson3 */,
 				84A1D7D01B0340CE00B21F9D /* ObjectiveC2_Lesson3Tests */,
 				84A1D7B51B0340CE00B21F9D /* Products */,
@@ -81,10 +102,13 @@
 		84A1D7B61B0340CE00B21F9D /* ObjectiveC2_Lesson3 */ = {
 			isa = PBXGroup;
 			children = (
+				84A1D7E51B03A88300B21F9D /* marker_apartments.png */,
 				84A1D7BB1B0340CE00B21F9D /* AppDelegate.h */,
 				84A1D7BC1B0340CE00B21F9D /* AppDelegate.m */,
 				84A1D7BE1B0340CE00B21F9D /* ViewController.h */,
 				84A1D7BF1B0340CE00B21F9D /* ViewController.m */,
+				84A1D7E71B03E73100B21F9D /* CustomTableViewCell.h */,
+				84A1D7E81B03E73200B21F9D /* CustomTableViewCell.m */,
 				84A1D7C11B0340CE00B21F9D /* Main.storyboard */,
 				84A1D7C41B0340CE00B21F9D /* Images.xcassets */,
 				84A1D7C61B0340CE00B21F9D /* LaunchScreen.xib */,
@@ -202,6 +226,7 @@
 				84A1D7C31B0340CE00B21F9D /* Main.storyboard in Resources */,
 				84A1D7C81B0340CE00B21F9D /* LaunchScreen.xib in Resources */,
 				84A1D7C51B0340CE00B21F9D /* Images.xcassets in Resources */,
+				84A1D7E61B03A88300B21F9D /* marker_apartments.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,6 +246,7 @@
 			files = (
 				84A1D7C01B0340CE00B21F9D /* ViewController.m in Sources */,
 				84A1D7BD1B0340CE00B21F9D /* AppDelegate.m in Sources */,
+				84A1D7E91B03E73200B21F9D /* CustomTableViewCell.m in Sources */,
 				84A1D7BA1B0340CE00B21F9D /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -414,6 +440,7 @@
 				84A1D7D91B0340CE00B21F9D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		84A1D7DA1B0340CE00B21F9D /* Build configuration list for PBXNativeTarget "ObjectiveC2_Lesson3Tests" */ = {
 			isa = XCConfigurationList;
@@ -422,6 +449,7 @@
 				84A1D7DC1B0340CE00B21F9D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
