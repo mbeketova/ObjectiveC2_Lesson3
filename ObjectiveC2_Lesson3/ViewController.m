@@ -20,7 +20,12 @@
 При нажатии на табличную ячейку должен происходить фокус на конкретную аннотацию*/
 
 
-//Примечание: Реализовала TableView,  MapView. По Лог Пресс добавляется адрес точки касания в массив и устанавливается маркер. Добавила две кнопки. При нажатии на кнопку: Добавить - добавляются все отмеченные маркером аллокации в массив. При нажатии на кнопку: Очистить - очищаются все аллокации (массив не стала очищать, хотя строчку с одновременным очищением массива при нажатии на кнопку закомментировала). При нажатии на табличную ячейку происходит фокус на конкретную аннотацию. Кроме того, в таблице можно удалить адрес. 
+//Примечание: Реализовала TableView,  MapView. По Лог Пресс добавляется адрес точки касания в массив и устанавливается маркер.
+//Добавила две кнопки. При нажатии на кнопку: Добавить - добавляются все отмеченные маркером аллокации в массив.
+//При нажатии на кнопку: Очистить - очищаются все аллокации (массив не стала очищать, хотя строчку с одновременным очищением массива
+//при нажатии на кнопку закомментировала).
+//При нажатии на табличную ячейку происходит фокус на конкретную аннотацию. Кроме того, в таблице можно удалить адрес.
+
 //--------------------------------------------------------------------------------------------------------------------------
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -39,6 +44,7 @@
 @implementation ViewController
 
 //--------------------------------------------------------------------------------------------------------------------------
+
 - (void) firstStart {
     //метод, который срабатывает один раз при первом запуске, если версия IOS = 8, или выше.
     NSString * ver = [[UIDevice currentDevice]systemVersion];
@@ -53,6 +59,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+
     
     isCurrentLocation = NO;
 
@@ -78,11 +87,12 @@
 //--------------------------------------------------------------------------------------------------------------------------
 #pragma mark - MKMapViewDelegate
 
-/*
+
 - (void)mapViewWillStartLoadingMap:(MKMapView *)mapView{
-    //метод, который можно использовать, пока загружается карта - оставила в записи для истории
+//    метод, который можно использовать, пока загружается карта - оставила в записи для истории
+    
 }
-*/
+
 
 
 - (void)mapViewDidFinishRenderingMap:(MKMapView *)mapView fullyRendered:(BOOL)fullyRendered {
@@ -216,7 +226,7 @@
             
           
         //записываем адрес с индексом в NSString
-            NSString * adressString = [[NSString alloc] initWithFormat:@"Город - %@\nУлица - %@\nИндекс - %@", [place.addressDictionary valueForKey:@"City"], [place.addressDictionary valueForKey:@"Street"], [place.addressDictionary valueForKey:@"ZIP"]];
+            NSString * adressString = [[NSString alloc] initWithFormat:@"%@\n%@\nИндекс - %@", [place.addressDictionary valueForKey:@"City"], [place.addressDictionary valueForKey:@"Street"], [place.addressDictionary valueForKey:@"ZIP"]];
         
             MKPointAnnotation * annotation = [[MKPointAnnotation alloc]init];
             annotation.title = adressString;
@@ -308,7 +318,7 @@
 - (IBAction)button_Cleaning:(id)sender {
    [self removeAllAnnotations]; // по нажатию на кнопку убираем аннотации с карты
   //  [self.arrayAdress removeAllObjects]; // очищаем массив
-    [self reloadTableView]; // перезагружаем таблицу
+  //  [self reloadTableView]; // перезагружаем таблицу
 
 
 }
