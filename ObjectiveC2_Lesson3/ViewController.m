@@ -38,6 +38,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property (weak, nonatomic) IBOutlet UIView *viewTableView;
 
 @end
 
@@ -78,7 +79,15 @@
     if (!isFirstStart) {
         [self firstStart];
     }
+    
    
+    // если массив пустой, то таблицу делаем прозрачной:
+    self.viewTableView.tag = 500;
+    if (self.arrayAdress.count == 0) {
+        self.viewTableView.alpha = 0;
+    }
+
+
     
 }
 
@@ -90,6 +99,7 @@
 
 - (void)mapViewWillStartLoadingMap:(MKMapView *)mapView{
 //    метод, который можно использовать, пока загружается карта - оставила в записи для истории
+
     
 }
 
@@ -273,7 +283,11 @@
     cell.label_ZIP.text = [[self.arrayAdress objectAtIndex:indexPath.row]objectForKey:@"ZIP"];
    
     
+
+    
     return cell;
+    
+
     
 }
 
@@ -317,15 +331,17 @@
 
 - (IBAction)button_Cleaning:(id)sender {
    [self removeAllAnnotations]; // по нажатию на кнопку убираем аннотации с карты
-  //  [self.arrayAdress removeAllObjects]; // очищаем массив
-  //  [self reloadTableView]; // перезагружаем таблицу
-
+    [self.arrayAdress removeAllObjects]; // очищаем массив
+    [self reloadTableView]; // перезагружаем таблицу
+    self.viewTableView.alpha = 0; // прячем таблицу
 
 }
 
 - (IBAction)button_AddTable:(id)sender {
     
     [self reloadTableView]; // по нажатию на кнопку - перезагружаем таблицу
+    self.viewTableView.alpha = 1;
+    [self.view bringSubviewToFront:self.viewTableView];
 }
 //--------------------------------------------------------------------------------------------------------------------------
 
