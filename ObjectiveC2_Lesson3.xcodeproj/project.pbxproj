@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		844B48E31B08C4E700F81AA7 /* Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = 844B48E21B08C4E700F81AA7 /* Animations.m */; };
 		84A1D7BA1B0340CE00B21F9D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A1D7B91B0340CE00B21F9D /* main.m */; };
 		84A1D7BD1B0340CE00B21F9D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A1D7BC1B0340CE00B21F9D /* AppDelegate.m */; };
 		84A1D7C01B0340CE00B21F9D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A1D7BF1B0340CE00B21F9D /* ViewController.m */; };
@@ -31,6 +32,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		844B48E11B08C4E600F81AA7 /* Animations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animations.h; sourceTree = "<group>"; };
+		844B48E21B08C4E700F81AA7 /* Animations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Animations.m; sourceTree = "<group>"; };
 		84A1D7B41B0340CE00B21F9D /* ObjectiveC2_Lesson3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ObjectiveC2_Lesson3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84A1D7B81B0340CE00B21F9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84A1D7B91B0340CE00B21F9D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -107,6 +110,8 @@
 				84A1D7BC1B0340CE00B21F9D /* AppDelegate.m */,
 				84A1D7BE1B0340CE00B21F9D /* ViewController.h */,
 				84A1D7BF1B0340CE00B21F9D /* ViewController.m */,
+				844B48E11B08C4E600F81AA7 /* Animations.h */,
+				844B48E21B08C4E700F81AA7 /* Animations.m */,
 				84A1D7E71B03E73100B21F9D /* CustomTableViewCell.h */,
 				84A1D7E81B03E73200B21F9D /* CustomTableViewCell.m */,
 				84A1D7C11B0340CE00B21F9D /* Main.storyboard */,
@@ -246,6 +251,7 @@
 			files = (
 				84A1D7C01B0340CE00B21F9D /* ViewController.m in Sources */,
 				84A1D7BD1B0340CE00B21F9D /* AppDelegate.m in Sources */,
+				844B48E31B08C4E700F81AA7 /* Animations.m in Sources */,
 				84A1D7E91B03E73200B21F9D /* CustomTableViewCell.m in Sources */,
 				84A1D7BA1B0340CE00B21F9D /* main.m in Sources */,
 			);

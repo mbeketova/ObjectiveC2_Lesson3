@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "CustomTableViewCell.h"
+#import "Animations.h"
 
 @interface ViewController () {
     BOOL isCurrentLocation;
@@ -20,10 +21,11 @@
 При нажатии на табличную ячейку должен происходить фокус на конкретную аннотацию*/
 
 
-//Примечание: Реализовала TableView,  MapView. По Лог Пресс добавляется адрес точки касания в массив и устанавливается маркер.
-//Добавила две кнопки. При нажатии на кнопку: Добавить - добавляются все отмеченные маркером аллокации в массив.
-//При нажатии на кнопку: Очистить - очищаются все аллокации (кроме того, очищается массив и таблица делается прозрачной).
-//При нажатии на табличную ячейку происходит фокус на конкретную аннотацию. Кроме того, в таблице можно удалить адрес.
+//Примечание: Реализовала TableView,  MapView. По Лонг Пресс добавляется адрес точки касания в массив и устанавливается маркер.
+//Добавила две кнопки. При нажатии на кнопку: Добавить - добавляются все отмеченные маркером аннотации в массив, а
+//сама карта от аннотаций очищается.
+//При нажатии на кнопку: Очистить - очищаются все аннотации (кроме того, очищается массив и таблица убирается).
+//При нажатии на табличную ячейку происходит фокус на конкретную аннотацию (устанавливается маркер). Кроме того, в таблице можно удалить адрес (при удалении так же удаляется и аннотация с карты).
 
 //--------------------------------------------------------------------------------------------------------------------------
 
@@ -38,6 +40,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (weak, nonatomic) IBOutlet UIView *viewTableView;
+@property (weak, nonatomic) IBOutlet UIView *viewMap;
 
 @end
 
@@ -80,11 +83,9 @@
     }
     
    
-    // если массив пустой, то таблицу делаем прозрачной:
-    self.viewTableView.tag = 500;
-    if (self.arrayAdress.count == 0) {
-        self.viewTableView.alpha = 0;
-    }
+    // при загрузке таблица прячется:
+
+    [Animations move_SubView:self.viewTableView Alpha:0];
 
 
     
@@ -126,7 +127,7 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
     
-    //устанавливаем маркер при длительном нажатии на карту
+    //устанавливаем маркер (из определенной картинки) на карту
     if (![annotation isKindOfClass:MKUserLocation.class]) {
         
         MKAnnotationView*annView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"Annotation"];
@@ -302,6 +303,7 @@
         [self.arrayAdress removeObjectAtIndex:indexPath.row];
         [[UIApplication sharedApplication] cancelLocalNotification:notif];
         [self reloadTableView];
+        [self removeAllAnnotations];
     }
 }
 
@@ -315,7 +317,8 @@
 
 //--------------------------------------------------------------------------------------------------------------------------
 
-- (void) removeAllAnnotations { //метод, который убирает аннотации с карты
+//метод, который убирает аннотации с карты:
+- (void) removeAllAnnotations {
     id userAnnotation = self.mapView.userLocation;
     NSMutableArray*annotations = [NSMutableArray arrayWithArray:self.mapView.annotations];
     [annotations removeObject:userAnnotation];
@@ -332,19 +335,31 @@
    [self removeAllAnnotations]; // по нажатию на кнопку убираем аннотации с карты
     [self.arrayAdress removeAllObjects]; // очищаем массив
     [self reloadTableView]; // перезагружаем таблицу
-    self.viewTableView.alpha = 0; // прячем таблицу
+    
+    [Animations move_SubView:self.viewTableView Alpha:0]; //прячем таблицу с анимацией
+    [Animations move_ViewMapTop:self.viewMap Points:89]; //отодвигаем карту вниз
+    
 
 }
 
 - (IBAction)button_AddTable:(id)sender {
-    
+    [self removeAllAnnotations]; //убираем с карты все аннотации
     [self reloadTableView]; // по нажатию на кнопку - перезагружаем таблицу и делаем ее видимой
-    self.viewTableView.alpha = 1;
+    
+    [Animations move_SubView:self.viewTableView Alpha:1]; //показываем таблицу с анимацией
+    [Animations move_ViewMapTop:self.viewMap Points:-89]; //отодвигаем карту вверх
+    
     
 }
 //--------------------------------------------------------------------------------------------------------------------------
 
 #pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self removeAllAnnotations];//при смене ячейки в таблице, старая аннотация удаляется
+    
+}
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //по индексу ячейки находим координаты в массиве self.arrayAdress и устанавливаем данные координаты по центру карты
@@ -352,6 +367,22 @@
     CLLocation * newLocation = [[CLLocation alloc] init];
     newLocation = [dict objectForKey:@"location"];
     [self setupMapView:newLocation.coordinate];
+    
+    //по полученным координатам устанавливаем аннотацию:
+    CLGeocoder * geocoder = [[CLGeocoder alloc]init];
+    [geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error) {
+        CLPlacemark * place = [placemarks objectAtIndex:0];
+        //записываем адрес с индексом в NSString
+        NSString * adressString = [[NSString alloc] initWithFormat:@"%@\n%@\nИндекс - %@", [place.addressDictionary valueForKey:@"City"], [place.addressDictionary valueForKey:@"Street"], [place.addressDictionary valueForKey:@"ZIP"]];
+        
+        MKPointAnnotation * annotation = [[MKPointAnnotation alloc]init];
+        annotation.title = adressString;
+        annotation.coordinate = newLocation.coordinate;
+        
+        
+        [self.mapView addAnnotation:annotation]; //добавляем аннотацию на карту
+        
+    }];
 
 
 }

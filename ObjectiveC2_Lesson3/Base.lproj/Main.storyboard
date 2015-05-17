@@ -12,6 +12,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view tag="300" contentMode="scaleToFill" id="7Rv-jW-7NF">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="FQw-ul-skA">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="dye-1Z-Bsa"/>
+                                            <outletCollection property="gestureRecognizers" destination="hBO-UY-RXo" appends="YES" id="4Cj-Uv-3Fj"/>
+                                        </connections>
+                                    </mapView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <view contentMode="scaleToFill" id="hP0-g2-3nR">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -40,21 +56,12 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="FQw-ul-skA">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <gestureRecognizers/>
-                                <connections>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="dye-1Z-Bsa"/>
-                                    <outletCollection property="gestureRecognizers" destination="hBO-UY-RXo" appends="YES" id="4Cj-Uv-3Fj"/>
-                                </connections>
-                            </mapView>
                             <view tag="500" contentMode="scaleToFill" id="on7-es-CS6">
                                 <rect key="frame" x="0.0" y="391" width="320" height="177"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="58" sectionHeaderHeight="22" sectionFooterHeight="22" id="qAB-hw-adR">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="177"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="178"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
@@ -108,6 +115,7 @@
                     <connections>
                         <outlet property="mapView" destination="FQw-ul-skA" id="K0V-x0-eQ2"/>
                         <outlet property="tableView" destination="qAB-hw-adR" id="wnn-XZ-hvu"/>
+                        <outlet property="viewMap" destination="7Rv-jW-7NF" id="utM-d2-odz"/>
                         <outlet property="viewTableView" destination="on7-es-CS6" id="69p-OR-USC"/>
                     </connections>
                 </viewController>
